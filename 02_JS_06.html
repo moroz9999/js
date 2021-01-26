@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let n1 = Math.floor(Math.random() * 10);
+        let n2 = Math.floor(Math.random() * 10);
+        alert(`Сгенерированные числа: n1 = ${n1}, n2 = ${n2}`);
+        let operation = prompt("Укажите математическую операцию\n(Используйте + - * /) :")
+        alert("Результат выполнения: " + perfomance(n1, n2, operation));
+        
+        function perfomance(a, b, oper) {
+            switch(oper) {
+                case "+":
+                return a + b;
+                break;
+                case "-":
+                return a - b;
+                break;
+                case "*":
+                return a * b;
+                break;
+                case "/":
+                return (b != 0) ? a / b : "Делить на ноль нельзя";
+                break;
+                default:
+                return "Знак операции не был введен";
+            }
+        }
+
+
+    </script>
+</body>
+</html>

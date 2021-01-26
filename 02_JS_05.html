@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let n1 = Math.floor(Math.random() * 10);
+        let n2 = Math.floor(Math.random() * 10);
+        alert(`Сгенерированные числа: n1 = ${n1}, n2 = ${n2}`);
+
+        function mySum(a, b) {
+            return a + b;
+        }
+
+        function myDif(a, b) {
+            return a - b;
+        }
+
+        function myMul(a, b) {
+            return a * b;
+        }
+
+        function myDiv(a, b) {
+            if (n2 == 0) {
+                return "На ноль делить нельзя";
+            } else {
+            return a / b;
+            }
+        }
+
+        alert("Результат сложения: " + mySum(n1, n2));
+        alert("Разность: " + myDif(n1, n2));
+        alert("Результат умножения: " + myMul(n1, n2));
+        alert("Результат деления: " + myDiv(n1, n2));
+    </script>
+</body>
+</html>

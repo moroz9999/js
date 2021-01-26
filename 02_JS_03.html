@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a, b;
+        while(isNaN(a) || isNaN(b)) {
+            a = +prompt("Введите числовое значение первой переменной: ");
+            b = +prompt("Введите числовое значение второй переменной: ");
+            if (isNaN(a) || isNaN(b)) {
+                alert("Как минимум одна переменная задана не числом. Повторите ввод.");
+            }
+        }
+
+        alert(perfomans(a, b));
+
+        function perfomans(var1, var2) {
+            if (var1 >= 0 && var2 >= 0){
+                return var1 - var2;
+            }
+            else if (var1 < 0 && var2 < 0) {
+                return var1 * var2;
+            }
+            else {
+                return var1 + var2;
+            }
+
+        }
+    </script>
+</body>
+</html>

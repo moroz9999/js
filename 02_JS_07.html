@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        alert(null == undefined); // true       Это описано в методичке
+        alert("2" > 1);     // true             И это тоже описано в методичке. NULL приводится к 0 в связи
+                            //                  с числовым преобразованием
+        alert(-2 > null);   // false            Аналогично предыдущему
+        alert(null == 0);   // false            Исходя из предыдущих строк я не могу объяснить, почему не 
+                            //                  происходит преобразование
+        alert(null === 0);  // false            Это можно понять :)
+    </script>
+</body>
+</html>
