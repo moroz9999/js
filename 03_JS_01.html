@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let i = 0;
+        let simple_n = [];
+        while(i <= 100) {
+            let k = 0; // Счетчик успешного деления на промежуточные числа
+            for(j = 2; j <= i / 2; j++) {
+                if(Number.isInteger(i / j)) {
+                    k++;
+                }
+            }
+            // if (k === 0) alert(i); // Можно долго тыкать ОК поштучно, но мы соберем массив:
+            if (k === 0) simple_n.push(i);
+            i++;
+        }
+        alert(simple_n);
+    </script>
+</body>
+</html>
