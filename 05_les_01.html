@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+
+        #game {
+            width: 500px;
+            margin: 50px auto;
+            border: 1px solid black;
+        }
+
+        #game td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+        .td_letter {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <table id='game'></table>
+    <script>
+        'use strict';
+        const genChessBoard = {
+            gameTableElement: document.getElementById('game'),
+
+            init() {
+                this.render();
+            },
+
+            render() {
+                let prevTdColor = "black";
+                let tdColor = "";
+                let letter
+                 let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+                this.strNumbers();
+
+                // Отрисовываем основное поле и буквенное обозначение ячеек
+                for (let row = 0; row < 8; row++) {
+                    letter = letters.pop();
+                    const tr = document.createElement('tr');
+                    this.gameTableElement.appendChild(tr);
+                    // Создание ячейки с буквой
+                    const td = document.createElement('td');
+                    td.className = "td_letter";
+                    td.textContent = letter;
+                    tr.appendChild(td);
+                    
+                    for (let col = 0; col < 8; col++) {
+                        const td = document.createElement('td');
+                        tdColor = (prevTdColor == "black") ? "#ddd" : "black";
+                        td.style.backgroundColor = tdColor;
+                        td.dataset.row = row.toString();
+                        td.dataset.col = col.toString();
+                        tr.appendChild(td);
+                        if (col < 7) {
+                            prevTdColor = tdColor;
+                        }
+                    }
+                    // Генерация букв справа от основного поля:
+                    // Не получилось использовать повторно код из строк 59-62. Не разобрался.
+                    const td1 = document.createElement('td');
+                    td1.className = "td_letter";
+                    td1.textContent = letter;
+                    tr.appendChild(td1);
+                }
+
+                this.strNumbers();
+            },
+
+            strNumbers() {
+                // Отдельно создаем строку с цифрами
+                let numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+                const tr = document.createElement('tr');
+                this.gameTableElement.appendChild(tr);
+                for (let col = 0; col < 9; col++) {
+                    const td = document.createElement('td');
+                    td.className = "td_letter";
+                    if (col != 0) td.textContent = numbers.shift();
+                    tr.appendChild(td);
+                }
+            },           
+        }
+        genChessBoard.init();
+    </script>
+</body>
+
+</html>

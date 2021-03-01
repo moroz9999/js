@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+
+        #cart {
+            width: 500px;
+            margin: 50px auto;
+            border: 1px solid black;
+        }
+
+        #cart td {
+            width: 150px;
+            height: 50px;
+            text-align: center;
+            background-color: #ddd;
+        }
+
+        #cart th {
+            background: #555;
+            width: 150px;
+            height: 50px;
+            color: bisque;
+        }
+
+        .cart-btn {
+            width: 200px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="cart-list">
+        <table id='cart'>
+        </table>
+    </div>
+
+    <script>
+        'use strict';
+        const catalog = {
+            cartTableElement: document.getElementById('cart'),
+            cartButton: null,
+            cartListBlock: null,
+
+            init() {
+                this.cartListBlock = document.querySelector('.cart-list');
+                this.render();
+                this.makeButton();
+                this.cartButton = document.querySelector('.cart-btn');
+                this.cartButton.addEventListener('click', this.clearCart.bind(this));                
+            },
+
+            tableHead: `
+                <tr><th class='table_head'>Наименование</th>
+                <th class="table_head">Цена за 1 ед.</th>
+                <th class="table_head">Количество</th></tr>`,
+
+            goods: [
+                {
+                product: 'scissors',
+                price: 350,
+                quantity: 2,
+                },
+                {
+                product: 'paints',
+                price: 200,
+                quantity: 1,
+                },
+                {
+                product: 'paper',
+                price: 100,
+                quantity: 3
+                },
+            ],
+
+            render() {                
+                this.cartTableElement.insertAdjacentHTML('beforeend', this.tableHead);
+                this.goods.forEach(good => {
+                    const tr = document.createElement('tr');
+                    this.cartTableElement.appendChild(tr);  // Добавили в структуру строку
+                    const td = document.createElement('td');
+                    td.textContent = good.product;
+                    tr.appendChild(td);                     // Добавили в структуру ячейку
+                    const td1 = document.createElement('td');
+                    td1.textContent = good.price;
+                    tr.appendChild(td1);
+                    const td2 = document.createElement('td');
+                    td2.textContent = good.quantity;
+                    tr.appendChild(td2);
+                });
+            },
+            makeButton() {
+                const codeButton = "<button class='cart-btn'>Очистить корзину</button>";
+                document.querySelector('body').insertAdjacentHTML('beforeend', codeButton);
+            },
+
+            clearCart(){
+                this.goods = [];
+                this.cartListBlock.textContent = 'Корзина пуста';
+                this.render();
+            }
+        }
+
+        const goodsInMyCart = {
+            init() {
+                this.genStr();
+            },
+            
+            genStr() {
+                const amountStr = `<center>В корзине товаров на сумму ${this.getSum()} руб.`;
+                document.querySelector('table').insertAdjacentHTML('afterend', amountStr);
+            },
+
+            getSum() {
+                let sum = 0;
+                for(let i = 0; i < catalog.goods.length; i++) {
+                    sum += catalog.goods[i].price * catalog.goods[i].quantity;
+                }
+                return sum;
+            },
+        }
+
+        catalog.init();
+        goodsInMyCart.init();
+        
+    </script>
+</body>
+
+</html>
